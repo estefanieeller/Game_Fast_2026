@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Fest 2026</title>
+    
+    <!-- Google Fonts: Orbitron para títulos (Gamer vibe) e Inter para textos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        gamer: ['Orbitron', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: '#0a0a0f',
+                        darker: '#050507',
+                        neonCyan: '#00f3ff',
+                        neonPurple: '#bc13fe',
+                        neonPink: '#ff007c',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Estilos Customizados para Efeitos Neon e Scrollbar */
+        body {
+            background-color: #050507;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(188, 19, 254, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(0, 243, 255, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(255, 0, 124, 0.1) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: #ffffff;
+        }
+
+        /* Efeitos Neon Textos */
+        .text-glow-cyan { text-shadow: 0 0 10px rgba(0,243,255,0.7), 0 0 20px rgba(0,243,255,0.5); }
+        .text-glow-purple { text-shadow: 0 0 10px rgba(188,19,254,0.7), 0 0 20px rgba(188,19,254,0.5); }
+        .text-glow-pink { text-shadow: 0 0 10px rgba(255,0,124,0.7), 0 0 20px rgba(255,0,124,0.5); }
+
+        /* Efeitos Neon Bordas e Caixas */
+        .box-glow-cyan { box-shadow: 0 0 15px rgba(0,243,255,0.3), inset 0 0 10px rgba(0,243,255,0.1); }
+        .box-glow-cyan:hover { box-shadow: 0 0 25px rgba(0,243,255,0.6), inset 0 0 15px rgba(0,243,255,0.3); border-color: #00f3ff; }
+        
+        .box-glow-purple { box-shadow: 0 0 15px rgba(188,19,254,0.3), inset 0 0 10px rgba(188,19,254,0.1); }
+        .box-glow-purple:hover { box-shadow: 0 0 25px rgba(188,19,254,0.6), inset 0 0 15px rgba(188,19,254,0.3); border-color: #bc13fe; }
+        
+        .box-glow-pink { box-shadow: 0 0 15px rgba(255,0,124,0.3), inset 0 0 10px rgba(255,0,124,0.1); }
+        .box-glow-pink:hover { box-shadow: 0 0 25px rgba(255,0,124,0.6), inset 0 0 15px rgba(255,0,124,0.3); border-color: #ff007c; }
+
+        /* Scrollbar customizada */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #0a0a0f; }
+        ::-webkit-scrollbar-thumb { background: #bc13fe; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00f3ff; }
+
+        /* Clip path para botões angulados tipo Sci-Fi */
+        .btn-scifi {
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+        }
+        
+        .glass-panel {
+            background: rgba(20, 20, 30, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden selection:bg-neonPurple selection:text-white">
+
+    <nav class="fixed w-full z-50 glass-panel border-b border-white/10 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <span class="text-3xl">🎮</span>
+                    <span class="font-gamer font-bold text-2xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-neonCyan via-neonPurple to-neonPink">
+                        GAME FEST <span class="text-white">2026</span>
+                    </span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#programacao" class="text-gray-300 hover:text-neonCyan font-medium transition-colors">Programação</a>
+                    <a href="#campeonatos" class="text-gray-300 hover:text-neonPurple font-medium transition-colors">Campeonatos</a>
+                    <a href="#atracoes" class="text-gray-300 hover:text-neonPink font-medium transition-colors">Atrações</a>
+                    <a href="#ingressos" class="btn-scifi bg-neonPurple/20 text-neonPurple border border-neonPurple px-6 py-2 font-gamer hover:bg-neonPurple hover:text-white box-glow-purple transition-all duration-300">
+                        Ingressos
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-white/10 absolute w-full">
+            <div class="px-4 pt-2 pb-4 space-y-2 flex flex-col text-center">
+                <a href="#programacao" class="block px-3 py-2 text-gray-300 hover:text-neonCyan hover:bg-white/5 rounded-md">Programação</a>
+                <a href="#campeonatos" class="block px-3 py-2 text-gray-300 hover:text-neonPurple hover:bg-white/5 rounded-md">Campeonatos</a>
+                <a href="#atracoes" class="block px-3 py-2 text-gray-300 hover:text-neonPink hover:bg-white/5 rounded-md">Atrações</a>
+                <a href="#ingressos" class="block px-3 py-2 text-neonPurple font-bold hover:bg-white/5 rounded-md">Ingressos</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden flex items-center min-h-[90vh]">
+        <!-- Fundo decorativo -->
+        <div class="absolute inset-0 z-0 flex justify-center items-center opacity-20 pointer-events-none">
+            <div class="w-96 h-96 bg-neonPurple rounded-full blur-[150px] animate-pulse-slow"></div>
+            <div class="w-96 h-96 bg-neonCyan rounded-full blur-[150px] absolute translate-x-1/2"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-block mb-4 px-4 py-1 rounded-full border border-neonCyan/30 bg-neonCyan/10 text-neonCyan font-semibold tracking-wide text-sm animate-float">
+                🚀 O MAIOR EVENTO GAMER DA DÉCADA
+            </div>
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-gamer font-black text-white mb-6 leading-tight">
+                WELCOME TO <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-neonCyan via-neonPurple to-neonPink text-glow-purple">
+                    GAME FEST 26
+                </span>
+            </h1>
+            <p class="mt-4 text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-10">
+                Junte-se a milhares de jogadores para campeonatos épicos, lançamentos exclusivos, meet & greets e muita diversão! 🕹️✨
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#ingressos" class="btn-scifi bg-gradient-to-r from-neonPurple to-neonPink text-white px-8 py-4 text-lg font-gamer font-bold hover:scale-105 transition-transform shadow-[0_0_20px_rgba(188,19,254,0.5)]">
+                    GARANTIR MEU LUGAR 🎟️
+                </a>
+                <a href="#campeonatos" class="btn-scifi bg-transparent border-2 border-neonCyan text-neonCyan px-8 py-4 text-lg font-gamer font-bold hover:bg-neonCyan/10 transition-colors box-glow-cyan">
+                    VER CAMPEONATOS 🏆
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section id="programacao" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-gamer font-bold text-white mb-4">
+                    CRONOGRAMA <span class="text-neonCyan text-glow-cyan">ÉPICO</span> 📅
+                </h2>
+                <div class="h-1 w-24 bg-gradient-to-r from-transparent via-neonCyan to-transparent mx-auto"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Dia 1 -->
+                <div class="glass-panel p-8 rounded-2xl border border-white/5 hover:-translate-y-2 transition-transform relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-neonCyan group-hover:shadow-[0_0_15px_#00f3ff] transition-shadow"></div>
+                    <h3 class="text-2xl font-gamer font-bold text-neonCyan mb-2">DIA 1 - START</h3>
+                    <p class="text-gray-400 mb-6 font-medium">10 de Novembro, 2026</p>
+                    <ul class="space-y-4 text-gray-300">
+                        <li class="flex items-start gap-3"><span class="text-neonCyan">▶</span> 10:00 - Cerimônia de Abertura</li>
+                        <li class="flex items-start gap-3"><span class="text-neonCyan">▶</span> 13:00 - Palestra: O Futuro dos Gráficos</li>
+                        <li class="flex items-start gap-3"><span class="text-neonCyan">▶</span> 16:00 - Fase de Grupos: EA FC 26</li>
+                        <li class="flex items-start gap-3"><span class="text-neonCyan">▶</span> 20:00 - Showmatch de Influenciadores</li>
+                    </ul>
+                </div>
+                
+                <!-- Dia 2 -->
+                <div class="glass-panel p-8 rounded-2xl border border-white/5 hover:-translate-y-2 transition-transform relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-neonPurple group-hover:shadow-[0_0_15px_#bc13fe] transition-shadow"></div>
+                    <h3 class="text-2xl font-gamer font-bold text-neonPurple mb-2">DIA 2 - BATTLE</h3>
+                    <p class="text-gray-400 mb-6 font-medium">11 de Novembro, 2026</p>
+                    <ul class="space-y-4 text-gray-300">
+                        <li class="flex items-start gap-3"><span class="text-neonPurple">▶</span> 11:00 - Seletivas de Street Fighter 6</li>
+                        <li class="flex items-start gap-3"><span class="text-neonPurple">▶</span> 14:00 - Painel: Mulheres nos Games</li>
+                        <li class="flex items-start gap-3"><span class="text-neonPurple">▶</span> 17:00 - Semifinais: Valorant</li>
+                        <li class="flex items-start gap-3"><span class="text-neonPurple">▶</span> 21:00 - Festa Neon Exclusiva VIP</li>
+                    </ul>
+                </div>
+
+                <!-- Dia 3 -->
+                <div class="glass-panel p-8 rounded-2xl border border-white/5 hover:-translate-y-2 transition-transform relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-neonPink group-hover:shadow-[0_0_15px_#ff007c] transition-shadow"></div>
+                    <h3 class="text-2xl font-gamer font-bold text-neonPink mb-2">DIA 3 - BOSS FIGHT</h3>
+                    <p class="text-gray-400 mb-6 font-medium">12 de Novembro, 2026</p>
+                    <ul class="space-y-4 text-gray-300">
+                        <li class="flex items-start gap-3"><span class="text-neonPink">▶</span> 12:00 - Finais de EA FC & SF6</li>
+                        <li class="flex items-start gap-3"><span class="text-neonPink">▶</span> 15:00 - Concurso Maior Cosplay</li>
+                        <li class="flex items-start gap-3"><span class="text-neonPink">▶</span> 18:00 - Grande Final: Valorant</li>
+                        <li class="flex items-start gap-3"><span class="text-neonPink">▶</span> 21:30 - Premiação e Encerramento</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="campeonatos" class="py-20 bg-dark relative border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-gamer font-bold text-white mb-4">
+                    ARENA DE <span class="text-neonPurple text-glow-purple">CAMPEONATOS</span> ⚔️
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto text-lg">Mostre suas habilidades, monte sua equipe e dispute por glória e premiações incríveis nos principais títulos do momento.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-10">
+                <!-- Game 1: Valorant -->
+                <div class="bg-darker rounded-xl overflow-hidden border border-white/10 group box-glow-pink transition-all duration-300">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://placehold.co/600x400/121212/ff007c?text=VALORANT&font=Oswald" alt="Valorant" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darker to-transparent"></div>
+                        <span class="absolute top-4 right-4 bg-neonPink text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">FPS Tático</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-gamer font-bold text-white mb-2">Copa Radiante <span class="text-neonPink">Valorant</span></h3>
+                        <p class="text-gray-400 mb-4 text-sm">Premiação de R$ 50.000,00. Forme sua equipe de 5 jogadores e domine o mapa nas seletivas abertas.</p>
+                        <div class="flex justify-between items-center mt-6">
+                            <span class="text-white font-bold">🏆 R$ 50k Pool</span>
+                            <button class="text-neonPink hover:text-white font-bold uppercase text-sm tracking-wider flex items-center gap-1 transition-colors">
+                                Inscrever-se <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game 2: EA FC 26 -->
+                <div class="bg-darker rounded-xl overflow-hidden border border-white/10 group box-glow-cyan transition-all duration-300">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://placehold.co/600x400/121212/00f3ff?text=EA+FC+26&font=Oswald" alt="EA FC 26" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darker to-transparent"></div>
+                        <span class="absolute top-4 right-4 bg-neonCyan text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Esportes</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-gamer font-bold text-white mb-2">Rei dos Gramados <span class="text-neonCyan">EA FC</span></h3>
+                        <p class="text-gray-400 mb-4 text-sm">Mostre suas habilidades nos gramados virtuais em combates X1 e leve o grande troféu e prêmios da Game Fest.</p>
+                        <div class="flex justify-between items-center mt-6">
+                            <span class="text-white font-bold">🏆 R$ 15k Pool</span>
+                            <button class="text-neonCyan hover:text-white font-bold uppercase text-sm tracking-wider flex items-center gap-1 transition-colors">
+                                Inscrever-se <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game 3: Street Fighter 6 -->
+                <div class="bg-darker rounded-xl overflow-hidden border border-white/10 group box-glow-purple transition-all duration-300">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://placehold.co/600x400/121212/bc13fe?text=STREET+FIGHTER+6&font=Oswald" alt="Street Fighter 6" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darker to-transparent"></div>
+                        <span class="absolute top-4 right-4 bg-neonPurple text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Luta Arcade</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-gamer font-bold text-white mb-2">Arena Kombat <span class="text-neonPurple">SF6</span></h3>
+                        <p class="text-gray-400 mb-4 text-sm">Combates 1v1 intensos com controles arcade e painéis. Inscrições abertas para todos os níveis de lutadores.</p>
+                        <div class="flex justify-between items-center mt-6">
+                            <span class="text-white font-bold">🏆 R$ 20k Pool</span>
+                            <button class="text-neonPurple hover:text-white font-bold uppercase text-sm tracking-wider flex items-center gap-1 transition-colors">
+                                Inscrever-se <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="atracoes" class="py-20 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-gamer font-bold text-white mb-4">
+                    ATRAÇÕES <span class="text-neonPink text-glow-pink">ESPECIAIS</span> ✨
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto text-lg">Muito além dos campeonatos! Explore áreas exclusivas projetadas para a comunidade celebrar a cultura gamer.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Atração 1 -->
+                <div class="flex flex-col sm:flex-row items-center gap-6 glass-panel p-6 rounded-2xl border-l-4 border-l-neonCyan hover:bg-white/5 transition-colors">
+                    <div class="w-24 h-24 flex-shrink-0 bg-neonCyan/20 rounded-full flex items-center justify-center text-4xl shadow-[0_0_15px_rgba(0,243,255,0.4)]">
+                        🦸‍♀️
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Concurso Cosplay Showdown</h3>
+                        <p class="text-gray-400">Traga seu melhor personagem à vida! Desfile no palco principal com jurados internacionais e prêmios épicos para as melhores caracterizações.</p>
+                    </div>
+                </div>
+
+                <!-- Atração 2 -->
+                <div class="flex flex-col sm:flex-row items-center gap-6 glass-panel p-6 rounded-2xl border-l-4 border-l-neonPurple hover:bg-white/5 transition-colors">
+                    <div class="w-24 h-24 flex-shrink-0 bg-neonPurple/20 rounded-full flex items-center justify-center text-4xl shadow-[0_0_15px_rgba(188,19,254,0.4)]">
+                        🤝
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Meet & Greet com Pro Players</h3>
+                        <p class="text-gray-400">Conheça de perto os maiores nomes do cenário competitivo, pegue autógrafos, tire fotos e bata um papo com seus ídolos.</p>
+                    </div>
+                </div>
+
+                <!-- Atração 3 -->
+                <div class="flex flex-col sm:flex-row items-center gap-6 glass-panel p-6 rounded-2xl border-l-4 border-l-neonPink hover:bg-white/5 transition-colors">
+                    <div class="w-24 h-24 flex-shrink-0 bg-neonPink/20 rounded-full flex items-center justify-center text-4xl shadow-[0_0_15px_rgba(255,0,124,0.4)]">
+                        🕹️
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Área Retro & Indie</h3>
+                        <p class="text-gray-400">Uma viagem no tempo com fliperamas clássicos liberados (free play) e uma vitrine com jogos independentes de desenvolvedores promissores.</p>
+                    </div>
+                </div>
+
+                <!-- Atração 4 -->
+                <div class="flex flex-col sm:flex-row items-center gap-6 glass-panel p-6 rounded-2xl border-l-4 border-l-yellow-400 hover:bg-white/5 transition-colors">
+                    <div class="w-24 h-24 flex-shrink-0 bg-yellow-400/20 rounded-full flex items-center justify-center text-4xl shadow-[0_0_15px_rgba(250,204,21,0.4)]">
+                        🎁
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Loot Drops Exclusivos</h3>
+                        <p class="text-gray-400">Durante todo o evento, sorteios surpresas acontecerão nos painéis, presenteando o público com periféricos gamers, skins e colecionáveis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ingressos" class="py-20 bg-darker relative">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+CjxyZWN0IHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgZmlsbD0idHJhbnNwYXJlbnQiPjwvcmVjdD4KPHBhdGggZD0iTTAgNDBoNDBWMEgwem0yMCAyMGMxMS4wNDYgMCAyMC04Ljk1NCAyMC0yMFMyOC45NTQgMCAyMCAwIDAgOC45NTQgMCAyMHM4Ljk1NCAyMCAyMCAyMHoiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wMikiIGZpbGwtcnVsZT0iZXZlbm9kZCI+PC9wYXRoPgo8L3N2Zz4=')] opacity-20"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-gamer font-bold text-white mb-4">
+                    GARANTA SEU <span class="text-neonCyan text-glow-cyan">ACESSO</span> 🎟️
+                </h2>
+                <p class="text-gray-400">Escolha a melhor classe para você viver essa aventura épica.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8 items-center max-w-5xl mx-auto">
+                
+                <!-- Ticket 1 -->
+                <div class="glass-panel p-8 rounded-2xl border border-white/10 hover:-translate-y-2 transition-transform">
+                    <h3 class="text-2xl font-gamer font-bold text-white mb-2">PASSE <span class="text-gray-400">BÁSICO</span></h3>
+                    <div class="my-6">
+                        <span class="text-4xl font-bold text-white">R$ 100</span><span class="text-gray-400">/dia</span>
+                    </div>
+                    <ul class="space-y-3 text-gray-300 mb-8">
+                        <li class="flex items-center gap-2">✔️ Acesso ao pavilhão principal</li>
+                        <li class="flex items-center gap-2">✔️ Acesso aos palcos e campeonatos</li>
+                        <li class="flex items-center gap-2 text-gray-500">❌ Acesso Antecipado</li>
+                        <li class="flex items-center gap-2 text-gray-500">❌ Meet & Greet VIP</li>
+                    </ul>
+                    <button class="w-full btn-scifi bg-white/10 text-white border border-white/20 py-3 font-bold hover:bg-white/20 transition-colors">
+                        SELECIONAR BÁSICO
+                    </button>
+                </div>
+
+                <!-- Ticket 2 (Destaque) -->
+                <div class="bg-gradient-to-b from-darker to-dark p-8 rounded-2xl border-2 border-neonPurple box-glow-purple transform lg:-translate-y-4 relative">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-neonPurple text-white px-4 py-1 font-bold text-sm rounded-full tracking-wider">
+                        MAIS POPULAR
+                    </div>
+                    <h3 class="text-2xl font-gamer font-bold text-white mb-2">PASSE <span class="text-neonPurple text-glow-purple">VIP</span></h3>
+                    <div class="my-6">
+                        <span class="text-5xl font-bold text-white">R$ 250</span><span class="text-neonPurple">/dia</span>
+                    </div>
+                    <ul class="space-y-3 text-white mb-8">
+                        <li class="flex items-center gap-2">✔️ Tudo do Passe Básico</li>
+                        <li class="flex items-center gap-2">✔️ <strong>Entrada 2h antecipada</strong></li>
+                        <li class="flex items-center gap-2">✔️ Kit Brindes (Camisa + Copo)</li>
+                        <li class="flex items-center gap-2">✔️ Assentos próximos aos palcos</li>
+                    </ul>
+                    <button class="w-full btn-scifi bg-neonPurple text-white py-4 font-bold text-lg hover:bg-white hover:text-neonPurple transition-colors shadow-[0_0_15px_rgba(188,19,254,0.5)]">
+                        COMPRAR PASSE VIP
+                    </button>
+                </div>
+
+                <!-- Ticket 3 -->
+                <div class="glass-panel p-8 rounded-2xl border border-white/10 hover:-translate-y-2 transition-transform">
+                    <h3 class="text-2xl font-gamer font-bold text-white mb-2">PASSE <span class="text-neonPink text-glow-pink">LENDA</span></h3>
+                    <div class="my-6">
+                        <span class="text-4xl font-bold text-white">R$ 500</span><span class="text-neonPink">/3 dias</span>
+                    </div>
+                    <ul class="space-y-3 text-gray-300 mb-8">
+                        <li class="flex items-center gap-2">✔️ <strong>Acesso total aos 3 dias</strong></li>
+                        <li class="flex items-center gap-2">✔️ Entrada VIP + Kit Lenda</li>
+                        <li class="flex items-center gap-2">✔️ <strong>Passe para 1 Meet & Greet</strong></li>
+                        <li class="flex items-center gap-2">✔️ Lounge exclusivo com buffet</li>
+                    </ul>
+                    <button class="w-full btn-scifi bg-transparent border border-neonPink text-neonPink py-3 font-bold hover:bg-neonPink hover:text-white transition-all box-glow-pink">
+                        TORNAR-SE LENDA
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="py-20 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="glass-panel border border-neonCyan/30 rounded-2xl p-8 md:p-12 shadow-[0_0_30px_rgba(0,243,255,0.1)]">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-gamer font-bold text-white mb-2">
+                        INICIE UM <span class="text-neonCyan">COMUNICADOR</span> 💬
+                    </h2>
+                    <p class="text-gray-400">Dúvidas sobre o evento, ingressos ou parcerias? Envie sua mensagem.</p>
+                </div>
+
+                <form id="form-contato" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="nome" class="block text-sm font-medium text-gray-400 mb-1">Player Name (Seu Nome)</label>
+                            <input type="text" id="nome" required
+                                class="w-full bg-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-neonCyan focus:ring-1 focus:ring-neonCyan transition-colors"
+                                placeholder="Ex: Faker">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-400 mb-1">Email de Contato</label>
+                            <input type="email" id="email" required
+                                class="w-full bg-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-neonCyan focus:ring-1 focus:ring-neonCyan transition-colors"
+                                placeholder="jogador@email.com">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="assunto" class="block text-sm font-medium text-gray-400 mb-1">Quest (Assunto)</label>
+                        <select id="assunto" required
+                            class="w-full bg-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-neonCyan focus:ring-1 focus:ring-neonCyan transition-colors appearance-none">
+                            <option value="">Selecione um tópico...</option>
+                            <option value="ingressos">Dúvida sobre Ingressos</option>
+                            <option value="campeonatos">Inscrição em Campeonatos</option>
+                            <option value="imprensa">Credenciamento de Imprensa/Criador</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="mensagem" class="block text-sm font-medium text-gray-400 mb-1">Mensagem</label>
+                        <textarea id="mensagem" rows="4" required
+                            class="w-full bg-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-neonCyan focus:ring-1 focus:ring-neonCyan transition-colors resize-none"
+                            placeholder="Escreva sua mensagem aqui..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="w-full btn-scifi bg-neonCyan text-black py-4 font-bold text-lg hover:bg-white transition-colors box-glow-cyan mt-4">
+                        ENVIAR MENSAGEM 📡
+                    </button>
+                </form>
+
+                <!-- Div de Sucesso Oculta -->
+                <div id="mensagem-sucesso" class="hidden mt-6 bg-green-500/20 border border-green-500 text-green-400 px-6 py-4 rounded-lg text-center font-medium animate-pulse">
+                    ✅ Missão Concluída! Sua mensagem foi enviada com sucesso ao nosso QG. Aguarde nosso retorno!
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-darker border-t border-white/10 pt-12 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            
+            <div class="flex items-center gap-2">
+                <span class="text-2xl">🎮</span>
+                <span class="font-gamer font-bold text-xl text-white">GAME FEST <span class="text-neonPurple">2026</span></span>
+            </div>
+            
+            <div class="text-center md:text-right text-gray-500 text-sm">
+                <p class="mb-1">Desenvolvido com 👾 por:</p>
+                <p class="font-bold text-gray-300">Sandy Fortes Cabral & Estéfani Nogueira Pedroza Eller</p>
+                <p class="mt-2 text-xs opacity-50">&copy; 2026 Game Fest. Projeto Acadêmico/Fictício.</p>
+            </div>
+            
+            <div class="flex gap-4">
+                <a href="#" class="text-gray-400 hover:text-neonCyan transition-colors"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
+                <a href="#" class="text-gray-400 hover:text-neonPurple transition-colors"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Lógica do Menu Mobile
+        const btnMenu = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        
+        btnMenu.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Fechar menu mobile ao clicar em um link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Validação e envio do Formulário de Contato
+        const formContato = document.getElementById('form-contato');
+        const msgSucesso = document.getElementById('mensagem-sucesso');
+
+        formContato.onsubmit = function(event) {
+            // Evita o recarregamento da página
+            event.preventDefault();
+            
+            // Exibe a mensagem de sucesso removendo a classe oculta (hidden)
+            msgSucesso.classList.remove('hidden');
+            
+            // Limpa os campos do formulário
+            formContato.reset();
+            
+            // Oculta a mensagem automaticamente após 5 segundos
+            setTimeout(() => {
+                msgSucesso.classList.add('hidden');
+            }, 5000);
+        };
+    </script>
+</body>
+</html>
